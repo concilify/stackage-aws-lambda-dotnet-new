@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     env:
       DOTNET_NOLOGO: true
     steps:
@@ -18,18 +18,48 @@ jobs:
       run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         git branch --remote --contains | grep origin/main
+    - name: Setup .NET Core 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.x'
+    - name: Setup .NET 5.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
     - name: Set VERSION
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
     - name: Pack
       run: nuget pack ./stackage-aws-lambda-templates.nuspec -NoDefaultExcludes -Version ${VERSION}
     - name: Install Lambda Template
       run: dotnet new --install ./Stackage.Aws.Lambda.DotNetNew.Templates.${VERSION}.nupkg
-    - name: Use Lambda Template
-      run: dotnet new slm --name Lambda.Function
-    - name: Build Generated Lambda
-      working-directory: ./Lambda.Function
+
+  # TODO: Create shared workflow to test individual framework
+
+    - name: Use Lambda Template (netcoreapp3.1)
+      run: dotnet new slm --name Lambda.Function.Three.One --framework netcoreapp3.1
+    - name: Build Generated Lambda (netcoreapp3.1)
+      working-directory: ./Lambda.Function.Three.One
       shell: pwsh
       run: ./build-package.ps1
+
+    - name: Use Lambda Template (net5.0)
+      run: dotnet new slm --name Lambda.Function.Five.Zero --framework net5.0
+    - name: Build Generated Lambda (net5.0)
+      working-directory: ./Lambda.Function.Five.Zero
+      shell: pwsh
+      run: ./build-package.ps1
+
+    - name: Use Lambda Template (net6.0)
+      run: dotnet new slm --name Lambda.Function.Six.Zero --framework net6.0
+    - name: Build Generated Lambda (net6.0)
+      working-directory: ./Lambda.Function.Six.Zero
+      shell: pwsh
+      run: ./build-package.ps1
+
     - name: Push
       run: dotnet nuget push Stackage.*.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_API_KEY}
       env:
