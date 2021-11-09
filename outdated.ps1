@@ -1,2 +1,1 @@
-dotnet outdated .
-dotnet outdated ./package/Stackage.Aws.Lambda.DotNetNew.Templates/templates/LambdaPackage-CSharp
+dotnet outdated ./templates/LambdaPackage-CSharp

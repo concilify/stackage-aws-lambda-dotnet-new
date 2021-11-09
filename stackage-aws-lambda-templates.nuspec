@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Stackage.Aws.Lambda.DotNetNew.Templates</id>
+    <version>0.0.0</version>
+    <description>Solution templates for AWS Lambda function with custom runtime.</description>
+    <authors>Andrew Craven</authors>
+    <license type="expression">MIT</license>
+    <copyright>Copyright © Andrew Craven 2021</copyright>
+    <language>en-GB</language>
+    <tags>dotnet-new aws lambda custom runtime nuget package</tags>
+    <repository type="git" url="https://github.com/concilify/stackage-aws-lambda-dotnet-new" />
+    <title>Stackage AWS Lambda templates for dotnet-new</title>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="templates/**" target="templates" />
+  </files>
+</package>
