@@ -21,7 +21,7 @@ jobs:
     - name: Set VERSION
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
     - name: Pack
-      run: nuget pack stackage-aws-lambda-templates.nuspec -Version=${VERSION}
+      run: nuget pack ./stackage-aws-lambda-templates.nuspec -NoDefaultExcludes -Version ${VERSION}
     - name: Install Lambda Template
       run: dotnet new --install ./Stackage.Aws.Lambda.DotNetNew.Templates.${VERSION}.nupkg
     - name: Use Lambda Template
