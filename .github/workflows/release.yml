@@ -40,21 +40,21 @@ jobs:
   # TODO: Create shared workflow to test individual framework
 
     - name: Use Lambda Template (netcoreapp3.1)
-      run: dotnet new slm --name Lambda.Function.Three.One --framework netcoreapp3.1
+      run: dotnet new stackagelambda --name Lambda.Function.Three.One --framework netcoreapp3.1
     - name: Build Generated Lambda (netcoreapp3.1)
       working-directory: ./Lambda.Function.Three.One
       shell: pwsh
       run: ./build-package.ps1
 
     - name: Use Lambda Template (net5.0)
-      run: dotnet new slm --name Lambda.Function.Five.Zero --framework net5.0
+      run: dotnet new stackagelambda --name Lambda.Function.Five.Zero --framework net5.0
     - name: Build Generated Lambda (net5.0)
       working-directory: ./Lambda.Function.Five.Zero
       shell: pwsh
       run: ./build-package.ps1
 
     - name: Use Lambda Template (net6.0)
-      run: dotnet new slm --name Lambda.Function.Six.Zero --framework net6.0
+      run: dotnet new stackagelambda --name Lambda.Function.Six.Zero --framework net6.0
     - name: Build Generated Lambda (net6.0)
       working-directory: ./Lambda.Function.Six.Zero
       shell: pwsh

@@ -18,10 +18,10 @@ dotnet new --update-apply --package Stackage.Aws.Lambda.DotNetNew.Templates
 
 ## Usage
 
-To create a new solution containing an AWS Lambda function use the `dotnet new slm` command, replacing `{LAMBDA_NAME}` as required (eg. `Lambda.Function`). This will create both a folder and a project named `{LAMBDA_NAME}` for your AWS Lambda function.
+To create a new solution containing an AWS Lambda function use the `dotnet new stackagelambda` command, replacing `{LAMBDA_NAME}` as required (eg. `Lambda.Function`). This will create both a folder and a project named `{LAMBDA_NAME}` for your AWS Lambda function.
 
 ```
-dotnet new slm --name {LAMBDA_NAME}
+dotnet new stackagelambda --name {LAMBDA_NAME}
 ```
 
 ## Contributing
