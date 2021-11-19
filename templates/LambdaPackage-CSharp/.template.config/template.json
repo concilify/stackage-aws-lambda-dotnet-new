@@ -13,7 +13,7 @@
   "groupIdentity": "Stackage.Templates.LambdaPackage",
   "precedence": 0,
   "identity": "Stackage.Templates.LambdaPackage.CSharp",
-  "shortName": "slm",
+  "shortName": "stackagelambda",
   "tags": {
     "language": "C#",
     "type": "project"
