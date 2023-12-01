@@ -12,47 +12,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     env:
       DOTNET_NOLOGO: true
+
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup .NET Core 3.1
-      uses: actions/setup-dotnet@v1
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 8.0
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '3.1.x'
-    - name: Setup .NET 5.0
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0.x'
-    - name: Setup .NET 6.0
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '8.0.x'
+
     - name: Pack
       run: nuget pack ./stackage-aws-lambda-templates.nuspec -NoDefaultExcludes -Version 0.0.0-ci
+
     - name: Install Lambda Template
       run: dotnet new --install ./Stackage.Aws.Lambda.DotNetNew.Templates.0.0.0-ci.nupkg
 
   # TODO: Create shared workflow to test individual framework
 
-    - name: Use Lambda Template (netcoreapp3.1)
-      run: dotnet new stackagelambda --name Lambda.Function.Three.One --framework netcoreapp3.1
-    - name: Build Generated Lambda (netcoreapp3.1)
-      working-directory: ./Lambda.Function.Three.One
-      shell: pwsh
-      run: ./build-package.ps1
-
-    - name: Use Lambda Template (net5.0)
-      run: dotnet new stackagelambda --name Lambda.Function.Five.Zero --framework net5.0
-    - name: Build Generated Lambda (net5.0)
-      working-directory: ./Lambda.Function.Five.Zero
-      shell: pwsh
-      run: ./build-package.ps1
-
     - name: Use Lambda Template (net6.0)
       run: dotnet new stackagelambda --name Lambda.Function.Six.Zero --framework net6.0
     - name: Build Generated Lambda (net6.0)
       working-directory: ./Lambda.Function.Six.Zero
+      shell: pwsh
+      run: ./build-package.ps1
+
+    - name: Use Lambda Template (net8.0)
+      run: dotnet new stackagelambda --name Lambda.Function.Eight.Zero --framework net8.0
+    - name: Build Generated Lambda (net8.0)
+      working-directory: ./Lambda.Function.Eight.Zero
       shell: pwsh
       run: ./build-package.ps1
