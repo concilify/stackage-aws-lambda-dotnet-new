@@ -1,29 +1,16 @@
-﻿using System.Threading.Tasks;
-using Amazon.Lambda.Serialization.SystemTextJson;
+﻿using Amazon.Lambda.Serialization.SystemTextJson;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Stackage.Aws.Lambda;
 using Stackage.Aws.Lambda.Extensions;
+using Stackage.LambdaPackage;
 
-namespace Stackage.LambdaPackage
-{
-   public static class Program
-   {
-      public static async Task Main()
-      {
-         var host = LambdaHost.Create<Request>(builder =>
-            {
-               builder.UseStartup<LambdaStartup>();
-               builder.UseSerializer<CamelCaseLambdaJsonSerializer>();
-               builder.UseHandler<LambdaHandler, Request>();
-            })
-            .ConfigureLogging(builder =>
-            {
-               builder.AddJsonConsole();
-            })
-            .Build();
+using var consoleLifetime = new ConsoleLifetime();
 
-         await host.RunAsync();
-      }
-   }
-}
+await new LambdaListenerBuilder()
+   .UseHandler<LambdaHandler, Request>()
+   .UseStartup<LambdaStartup>()
+   .UseSerializer<SourceGeneratorLambdaJsonSerializer<LambdaJsonSerializerContext>>()
+   .Build()
+   .ListenAsync(consoleLifetime.Token);
+
