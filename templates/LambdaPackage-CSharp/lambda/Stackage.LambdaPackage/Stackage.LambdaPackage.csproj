@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.4.0" />
-    <PackageReference Include="Stackage.Aws.Lambda" Version="0.17.0" />
+    <PackageReference Include="Stackage.Aws.Lambda" Version="0.18.0" />
   </ItemGroup>
 
 </Project>

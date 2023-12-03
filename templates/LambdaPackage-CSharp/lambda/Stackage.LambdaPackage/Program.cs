@@ -1,8 +1,5 @@
 ﻿using Amazon.Lambda.Serialization.SystemTextJson;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Stackage.Aws.Lambda;
-using Stackage.Aws.Lambda.Extensions;
 using Stackage.LambdaPackage;
 
 using var consoleLifetime = new ConsoleLifetime();
