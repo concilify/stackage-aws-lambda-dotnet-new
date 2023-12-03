@@ -46,40 +46,32 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "netcoreapp3.1",
-          "description": "Target netcoreapp3.1"
-        },
-        {
-          "choice": "net5.0",
-          "description": "Target net5.0"
-        },
-        {
           "choice": "net6.0",
           "description": "Target net6.0"
+        },
+        {
+          "choice": "net8.0",
+          "description": "Target net8.0"
         }
       ],
-      "replaces": "net5.0",
-      "defaultValue": "net5.0"
+      "replaces": "net8.0",
+      "defaultValue": "net8.0"
     },
     "dockerBaseImage": {
       "type": "generated",
       "generator": "switch",
-      "replaces": "mcr.microsoft.com/dotnet/sdk:5.0",
+      "replaces": "mcr.microsoft.com/dotnet/sdk:8.0",
       "parameters": {
         "evaluator": "C++",
         "datatype": "string",
         "cases": [
           {
-            "condition": "(framework == 'netcoreapp3.1')",
-            "value": "mcr.microsoft.com/dotnet/core/sdk:3.1"
-          },
-          {
-            "condition": "(framework == 'net5.0')",
-            "value": "mcr.microsoft.com/dotnet/sdk:5.0"
-          },
-          {
             "condition": "(framework == 'net6.0')",
             "value": "mcr.microsoft.com/dotnet/sdk:6.0"
+          },
+          {
+            "condition": "(framework == 'net8.0')",
+            "value": "mcr.microsoft.com/dotnet/sdk:8.0"
           }
         ]
       }

@@ -1,4 +1,4 @@
-docker build lambda -t package-name-lower
+docker build lambda --tag package-name-lower --progress=plain
 
 $id = docker create package-name-lower
 docker cp ${id}:/lambda/Stackage.LambdaPackage.zip .
