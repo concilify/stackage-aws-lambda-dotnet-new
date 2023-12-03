@@ -10,10 +10,10 @@ To install the `Stackage.Aws.Lambda.DotNetNew.Templates` package use the `dotnet
 dotnet new --install Stackage.Aws.Lambda.DotNetNew.Templates
 ```
 
-To update to the latest version of the `Stackage.Aws.Lambda.DotNetNew.Templates` package use the `dotnet new --update-apply` command.
+To update to the latest version of the `Stackage.Aws.Lambda.DotNetNew.Templates` package use the `dotnet new update` command. Be aware that this will attempt to update all dotnet new template packages.
 
 ```
-dotnet new --update-apply --package Stackage.Aws.Lambda.DotNetNew.Templates
+dotnet new update
 ```
 
 ## Usage
