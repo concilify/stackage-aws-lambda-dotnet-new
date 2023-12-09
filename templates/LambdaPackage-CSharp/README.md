@@ -10,7 +10,7 @@ If you haven't done so already, install the `Stackage.Aws.Lambda.FakeRuntime` pa
 dotnet tool install --global Stackage.Aws.Lambda.FakeRuntime
 ```
 
-To update to the latest version of the `Stackage.Aws.Lambda.FakeRuntime` package use the `dotnet new update` command.
+To update to the latest version of the `Stackage.Aws.Lambda.FakeRuntime` package use the `dotnet new update` command. Be aware that this will attempt to update all dotnet new template packages.
 
 ```
 dotnet new update
